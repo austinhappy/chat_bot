@@ -17,7 +17,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, StickerSendMessage
 )
 
 app = Flask(__name__)
@@ -51,6 +51,18 @@ def handle_message(event):
     msg = event.message.text #使用者傳來的訊息
     r = '你說啥?'
 
+    if '給我貼圖' in msg:
+        sticker_message = StickerSendMessage(
+            package_id='1',
+            sticker_id='1'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        StickerSendMessage)
+
+        return
+
     if msg in ['hi', 'Hi']:
         r = '哈囉!'
     elif msg == '你吃飯了嗎?':
@@ -61,14 +73,8 @@ def handle_message(event):
         r = '你想要訂位嗎?'
 
     line_bot_api.reply_message(
-    	
         event.reply_token,
-        TextSendMessage(text=r) #event.message.text回復傳來的訊息
-
-        sticker_message = StickerSendMessage(
-            package_id='1',
-            sticker_id='1'
-    ))
+        TextSendMessage(text=r)) #event.message.text回復傳來的訊息
 
 
 if __name__ == "__main__": #此行的用意是為了確保我們是寫執行的程式，而不是在import時就已經被執行各種有的沒的(CPU會跑很多沒意義的程式)
