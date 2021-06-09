@@ -61,8 +61,14 @@ def handle_message(event):
         r = '你想要訂位嗎?'
 
     line_bot_api.reply_message(
+    	
         event.reply_token,
-        TextSendMessage(text=r)) #event.message.text回復傳來的訊息
+        TextSendMessage(text=r) #event.message.text回復傳來的訊息
+
+        sticker_message = StickerSendMessage(
+            package_id='1',
+            sticker_id='1'
+    ))
 
 
 if __name__ == "__main__": #此行的用意是為了確保我們是寫執行的程式，而不是在import時就已經被執行各種有的沒的(CPU會跑很多沒意義的程式)
