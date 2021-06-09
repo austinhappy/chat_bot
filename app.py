@@ -50,10 +50,12 @@ def callback():
 def handle_message(event):
 	msg = event.message.text #使用者傳來的訊息
 	r = '你說啥?'
+
 	if msg == 'hi':
 		r = 'hi'
 	elif msg == '你吃飯了嗎?':
 		r = '還沒'
+		
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r)) #event.message.text回復傳來的訊息
