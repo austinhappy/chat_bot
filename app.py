@@ -4,6 +4,7 @@
 #line-bot-sdk-python 軟體開發套件
 #主程式會寫app.py
 #flask, django是目前主流的伺服器開發方式，django是專為設計網頁用的
+#上傳至github後要再上傳至git push heroku main
 
 #########################
 ########架設伺服器########
